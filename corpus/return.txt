@@ -1,0 +1,15 @@
+================
+Return Statement
+================
+
+return ""
+
+return $blob
+
+return
+
+---
+(source_file
+	(return (string))
+	(return (local_variable))
+	(return))

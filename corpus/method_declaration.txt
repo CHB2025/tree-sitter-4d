@@ -1,0 +1,17 @@
+==================
+Method Declaration
+==================
+
+#DECLARE($tst1: Text; $tst2: Integer; $tst3 : cs.MyClass) -> $ret : Blob
+
+---
+(source_file
+    (method_declaration
+        (local_variable)
+        (type)
+        (local_variable)
+        (type)
+        (local_variable)
+        (type)
+        (local_variable)
+        (type)))

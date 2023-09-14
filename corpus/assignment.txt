@@ -1,0 +1,22 @@
+==========
+Assignment
+==========
+
+$test:=6.23
+process_var:="" //with trailing comment
+<>global_test:="literal string"
+
+---
+
+(source_file
+    (assignment
+        (local_variable)
+        (number))
+    (assignment
+        (process_variable)
+        (string))
+    (comment)
+    (assignment
+        (interprocess_variable)
+        (string)))
+

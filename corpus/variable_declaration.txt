@@ -1,0 +1,11 @@
+====================
+Variable Declaration
+====================
+
+var $tst:Text
+
+---
+(source_file
+    (variable_declaration
+        (local_variable)
+        (type)))

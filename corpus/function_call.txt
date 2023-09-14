@@ -1,0 +1,18 @@
+=============
+Function Call
+=============
+
+test_method($var1; $var3; ->$pointer)
+test method with spaces()
+method_with_no_parens
+
+---
+
+(source_file
+    (function_call
+        (local_variable)
+        (local_variable)
+        (pointer
+            (local_variable)))
+    (function_call)
+    (process_variable))
