@@ -7,5 +7,6 @@ var $tst:Text
 ---
 (source_file
     (variable_declaration
-        (local_variable)
+        (local_variable
+            (identifier))
         (type)))

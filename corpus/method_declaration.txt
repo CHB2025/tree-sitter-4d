@@ -7,11 +7,11 @@ Method Declaration
 ---
 (source_file
     (method_declaration
-        (local_variable)
-        (type)
-        (local_variable)
-        (type)
-        (local_variable)
-        (type)
-        (local_variable)
+        params: (local_variable (identifier))
+        params: (type)
+        params: (local_variable (identifier))
+        params: (type)
+        params: (local_variable (identifier))
+        params: (type)
+        (local_variable (identifier))
         (type)))

@@ -10,13 +10,13 @@ process_var:="" //with trailing comment
 
 (source_file
     (assignment
-        (local_variable)
+        (local_variable (identifier))
         (number))
     (assignment
-        (process_variable)
+        (process_variable (identifier))
         (string))
     (comment)
     (assignment
-        (interprocess_variable)
+        (interprocess_variable (identifier))
         (string)))
 

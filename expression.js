@@ -25,11 +25,11 @@ module.exports = {
     date: _$ => /!\d\d\d\d-\d\d-\d\d!/,
     time: _$ => /\?\d\d:\d\d:\d\d\?/,
 
-    table: $ => seq("[", $._identifier, "]"),
+    table: $ => seq("[", $.identifier, "]"),
     field: $ => seq($.table, $._immediate),
     pointer: $ => prec.right(seq("->", $._expression)),
     function_call: $ => seq(
-        field('name', $._identifier), "(", 
+        field('name', $.identifier), "(", 
         optional(field("params", seq(
             repeat(seq($._fn_arg, ";")), 
             $._fn_arg,
@@ -50,13 +50,13 @@ module.exports = {
     object_access: $ => seq(
         field("object", $._expression), 
         token.immediate("."), 
-        field("attribute", token.immediate(/[a-zA-Z$][\w$]*/))
+        field("attribute", $._immediate)
     ),
     member_function_call: $ => seq(
         field("object", $._expression),
         token.immediate("."),
-        field("method", token.immediate(/[a-zA-Z$][\w$]*/)),
-        token.immediate("("),
+        field("method", $._immediate),
+        token("("),
         optional(field("params", seq(
             optional(repeat(seq($._expression, ";"))),
             $._expression,
@@ -65,7 +65,7 @@ module.exports = {
     ),
     collection_access: $ => seq(
         $._expression, 
-        token.immediate("["),
+        token("["),
         $._expression,
         token("]"),
     ),
@@ -81,8 +81,8 @@ module.exports = {
     )), $._expression)),
 
     // https://developer.4d.com/docs/Concepts/identifiers - Not entirely accurate. See ∞ excellent test method ∞
-    _identifier: _$ => /[a-zA-Z_0-9]([\w ]*[\w])?/,
-    _immediate: _$ => token.immediate(/[a-zA-Z_0-9]([\w ]*[\w])?/),
+    identifier: _$ => /[a-zA-Z_0-9]([\w ]*[\w])?/,
+    _immediate: $ => alias(token.immediate(/[a-zA-Z_0-9]([\w ]*[\w])?/), $.identifier),
     _variable: $ => choice(
         $.local_variable,
         $.process_variable,
@@ -92,7 +92,7 @@ module.exports = {
         seq("$", $._immediate),
         seq("$", token.immediate("{"), $._expression, token("}")),
     ),
-    process_variable: $ => $._identifier,
+    process_variable: $ => $.identifier,
     interprocess_variable: $ => seq("<>", $._immediate),
 
 }

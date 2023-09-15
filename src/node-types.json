@@ -798,9 +798,13 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "identifier",
+          "named": true
+        },
         {
           "type": "table",
           "named": true
@@ -1248,6 +1252,16 @@
     "type": "function_call",
     "named": true,
     "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "op": {
         "multiple": true,
         "required": false,
@@ -1763,7 +1777,17 @@
   {
     "type": "interprocess_variable",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "local_variable",
@@ -1874,7 +1898,7 @@
     },
     "children": {
       "multiple": true,
-      "required": false,
+      "required": true,
       "types": [
         {
           "type": "array_access",
@@ -1898,6 +1922,10 @@
         },
         {
           "type": "function_call",
+          "named": true
+        },
+        {
+          "type": "identifier",
           "named": true
         },
         {
@@ -1951,6 +1979,16 @@
     "type": "member_function_call",
     "named": true,
     "fields": {
+      "method": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "object": {
         "multiple": true,
         "required": true,
@@ -2461,6 +2499,16 @@
     "type": "object_access",
     "named": true,
     "fields": {
+      "attribute": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
       "object": {
         "multiple": true,
         "required": true,
@@ -3115,7 +3163,17 @@
   {
     "type": "process_variable",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "repeat",
@@ -3742,7 +3800,17 @@
   {
     "type": "table",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "type",
@@ -4276,6 +4344,10 @@
   },
   {
     "type": "date",
+    "named": true
+  },
+  {
+    "type": "identifier",
     "named": true
   },
   {

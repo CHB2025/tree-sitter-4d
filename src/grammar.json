@@ -1,6 +1,6 @@
 {
   "name": "FourD",
-  "word": "_identifier",
+  "word": "identifier",
   "rules": {
     "source_file": {
       "type": "SEQ",
@@ -196,7 +196,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "_identifier"
+          "name": "identifier"
         },
         {
           "type": "STRING",
@@ -242,7 +242,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "_identifier"
+            "name": "identifier"
           }
         },
         {
@@ -422,11 +422,8 @@
           "type": "FIELD",
           "name": "attribute",
           "content": {
-            "type": "IMMEDIATE_TOKEN",
-            "content": {
-              "type": "PATTERN",
-              "value": "[a-zA-Z$][\\w$]*"
-            }
+            "type": "SYMBOL",
+            "name": "_immediate"
           }
         }
       ]
@@ -453,15 +450,12 @@
           "type": "FIELD",
           "name": "method",
           "content": {
-            "type": "IMMEDIATE_TOKEN",
-            "content": {
-              "type": "PATTERN",
-              "value": "[a-zA-Z$][\\w$]*"
-            }
+            "type": "SYMBOL",
+            "name": "_immediate"
           }
         },
         {
-          "type": "IMMEDIATE_TOKEN",
+          "type": "TOKEN",
           "content": {
             "type": "STRING",
             "value": "("
@@ -529,7 +523,7 @@
           "name": "_expression"
         },
         {
-          "type": "IMMEDIATE_TOKEN",
+          "type": "TOKEN",
           "content": {
             "type": "STRING",
             "value": "["
@@ -697,16 +691,21 @@
         ]
       }
     },
-    "_identifier": {
+    "identifier": {
       "type": "PATTERN",
       "value": "[a-zA-Z_0-9]([\\w ]*[\\w])?"
     },
     "_immediate": {
-      "type": "IMMEDIATE_TOKEN",
+      "type": "ALIAS",
       "content": {
-        "type": "PATTERN",
-        "value": "[a-zA-Z_0-9]([\\w ]*[\\w])?"
-      }
+        "type": "IMMEDIATE_TOKEN",
+        "content": {
+          "type": "PATTERN",
+          "value": "[a-zA-Z_0-9]([\\w ]*[\\w])?"
+        }
+      },
+      "named": true,
+      "value": "identifier"
     },
     "_variable": {
       "type": "CHOICE",
@@ -772,7 +771,7 @@
     },
     "process_variable": {
       "type": "SYMBOL",
-      "name": "_identifier"
+      "name": "identifier"
     },
     "interprocess_variable": {
       "type": "SEQ",

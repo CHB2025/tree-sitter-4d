@@ -5,7 +5,7 @@ const expressions = require("./expression");
 // TODO: Add formula support
 module.exports = grammar({
     name: "FourD",
-    word: $ => $._identifier,
+    word: $ => $.identifier,
     extras: $ => [$.comment, "\t", "\v", " ",  /\\\r?\n/],
     rules: {
         source_file: $ => seq(repeat(prec(2, "\n")), optional($.method_declaration), repeat($._line)),

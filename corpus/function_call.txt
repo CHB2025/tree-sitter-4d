@@ -10,9 +10,10 @@ method_with_no_parens
 
 (source_file
     (function_call
-        (local_variable)
-        (local_variable)
-        (pointer
-            (local_variable)))
-    (function_call)
-    (process_variable))
+        name: (identifier)
+        params: (local_variable (identifier))
+        params: (local_variable (identifier))
+        params: (pointer
+            (local_variable (identifier))))
+    (function_call name: (identifier))
+    (process_variable (identifier)))

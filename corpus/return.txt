@@ -11,5 +11,5 @@ return
 ---
 (source_file
 	(return (string))
-	(return (local_variable))
+	(return (local_variable (identifier)))
 	(return))
