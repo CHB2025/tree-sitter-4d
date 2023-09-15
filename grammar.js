@@ -5,13 +5,14 @@ const expressions = require("./expression");
 // TODO: Add formula support
 module.exports = grammar({
     name: "FourD",
-    word: $ => $.identifier,
+    //word: $ => $.identifier,
     extras: $ => [$.comment, "\t", "\v", " ",  /\\\r?\n/],
     rules: {
         source_file: $ => seq(repeat(prec(2, "\n")), optional($.method_declaration), repeat($._line)),
         _line: $ => seq(
             optional(choice(
                 $._statement,
+                $._control_structure,
                 $._expression,
             )),
             "\n"
@@ -19,17 +20,15 @@ module.exports = grammar({
         _statement: $ => choice(
             $.assignment,
             $.variable_declaration,
-            $._control_structure,
             $.return,
         ),
-        ...expressions,
-        assignment: $ => prec(2, seq(
+        assignment: $ => seq(
             choice($._variable, $.field, $._accessor), 
             field("op", choice(":=", "*=", "+=", "-=", "/=")), 
             $._expression
-        )),
+        ),
         variable_declaration: $ => seq(
-            "var", 
+            token(prec(2, "var ")), 
             repeat(seq($._variable, ";")),
             $._variable, ":", $.type
         ),
@@ -135,5 +134,6 @@ module.exports = grammar({
             "return",
             optional($._expression),
         ),
+        ...expressions,
     }
 })

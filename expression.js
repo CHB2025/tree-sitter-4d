@@ -1,16 +1,15 @@
 module.exports = {
     _expression: $ => choice(
-        prec(3, $._literal),
+        $._literal,
         $.function_call,
         $.pointer,
         $._parentheses,
         $._accessor,
-        $._binary_expression,
+        $.binary_expression,
         $._variable,
         $.table,
         $.field,
     ),
-
     // TODO: Add support for object and collection literals
     _literal: $ => choice(
         $.string,
@@ -24,6 +23,22 @@ module.exports = {
     number: _$ => /-?\d+(\.\d+)?/,
     date: _$ => /!\d\d\d\d-\d\d-\d\d!/,
     time: _$ => /\?\d\d:\d\d:\d\d\?/,
+
+    // https://developer.4d.com/docs/Concepts/identifiers - Not entirely accurate. See ∞ excellent test method ∞
+    identifier: _$ => /\w([\w ]*\w)?/,
+    _immediate: $ => alias(token.immediate(/\w([\w ]*\w)?/), $.identifier),
+    _variable: $ => choice(
+        $.local_variable,
+        $.process_variable,
+        $.interprocess_variable,
+    ),
+    local_variable: $ => choice(
+        seq("$", $._immediate),
+        seq("$", token.immediate("{"), $._expression, token("}")),
+    ),
+    process_variable: $ => $.identifier,
+    interprocess_variable: $ => seq("<>", $._immediate),
+
 
     table: $ => seq("[", $.identifier, "]"),
     field: $ => seq($.table, $._immediate),
@@ -46,7 +61,7 @@ module.exports = {
         $.collection_access,
         $.array_access,
     ),
-    pointer_access: $ => seq($._expression, "->", optional(/\w+/)), // What is the optional identifier for?
+    pointer_access: $ => seq(field("pointer", $._expression), "->"),
     object_access: $ => seq(
         field("object", $._expression), 
         token.immediate("."), 
@@ -64,35 +79,30 @@ module.exports = {
         token(")"),
     ),
     collection_access: $ => seq(
-        $._expression, 
+        field("collection", $._expression), 
         token("["),
-        $._expression,
+        field("item", $._expression),
         token("]"),
     ),
-    array_access: $ => seq($._expression, token.immediate("{"), $._expression, token("}")),
-    _binary_expression: $ => prec.left(seq($._expression, field("op", choice(
-        "+", "-", "/", "*",
-        "&", "|", "=", "#",
-        "&&", "||",
-        ">", "<", ">=", "<=",
-        "%", "^", "\^|",
-        "<<", ">>", "?+", "?-", "??",
-        "*+", "*|"
-    )), $._expression)),
+    array_access: $ => seq(
+        field("array", $._expression), 
+        token.immediate("{"), 
+        field("item", $._expression), 
+        token("}")
+    ),
+    binary_expression: $ => prec.left(seq(
+        field("left", $._expression),
+        field("op", choice(
+            "+", "-", "/", "*",
+            "&", "|", "=", "#",
+            "&&", "||",
+            ">", "<", ">=", "<=",
+            "%", "^", "\^|",
+            "<<", ">>", "?+", "?-", "??",
+            "*+", "*|"
+        )), 
+        field("right", $._expression)
+    )),
 
-    // https://developer.4d.com/docs/Concepts/identifiers - Not entirely accurate. See ∞ excellent test method ∞
-    identifier: _$ => /[a-zA-Z_0-9]([\w ]*[\w])?/,
-    _immediate: $ => alias(token.immediate(/[a-zA-Z_0-9]([\w ]*[\w])?/), $.identifier),
-    _variable: $ => choice(
-        $.local_variable,
-        $.process_variable,
-        $.interprocess_variable,
-    ),
-    local_variable: $ => choice(
-        seq("$", $._immediate),
-        seq("$", token.immediate("{"), $._expression, token("}")),
-    ),
-    process_variable: $ => $.identifier,
-    interprocess_variable: $ => seq("<>", $._immediate),
 
 }

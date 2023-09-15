@@ -1,0 +1,28 @@
+=========
+Accessors
+=========
+
+$temp.first
+4D Utility.Regex.new()
+$pointer->
+$collection[$i]
+vt_Abcs{3}
+
+---
+(source_file
+	(object_access 
+		object: (local_variable (identifier))
+		attribute: (identifier))
+	(member_function_call
+		object: (object_access
+			object: (process_variable (identifier))
+			attribute: (identifier))
+		method: (identifier))
+	(pointer_access 
+		pointer: (local_variable (identifier)))
+	(collection_access
+		collection: (local_variable (identifier))
+		item: (local_variable (identifier)))
+	(array_access
+		array: (process_variable (identifier))
+		item: (number)))

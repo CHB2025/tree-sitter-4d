@@ -2,11 +2,23 @@
 Variable Declaration
 ====================
 
-var $tst:Text
+var $tst; process_var:Text
+var <>tst : Integer
+var tst : Text
 
 ---
 (source_file
     (variable_declaration
         (local_variable
+            (identifier))
+        (process_variable
+            (identifier))
+        (type))
+    (variable_declaration
+        (interprocess_variable
+            (identifier))
+        (type))
+    (variable_declaration
+        (process_variable
             (identifier))
         (type)))
