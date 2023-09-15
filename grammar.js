@@ -1,5 +1,8 @@
 const expressions = require("./expression");
 
+// TODO: Add sql support
+// TODO: Add class support
+// TODO: Add formula support
 module.exports = grammar({
     name: "FourD",
     word: $ => $._identifier,
@@ -22,7 +25,7 @@ module.exports = grammar({
         ...expressions,
         assignment: $ => prec(2, seq(
             choice($._variable, $.field, $._accessor), 
-            choice(":=", "*=", "+=", "-=", "/="), 
+            field("op", choice(":=", "*=", "+=", "-=", "/=")), 
             $._expression
         )),
         variable_declaration: $ => seq(
@@ -30,18 +33,20 @@ module.exports = grammar({
             repeat(seq($._variable, ";")),
             $._variable, ":", $.type
         ),
-        method_declaration: $ => seq(
+        method_declaration: $ => prec.right(seq(
             "#DECLARE",
             "(",
-            optional(seq(
+            optional(field("params", seq(
                 repeat(seq($.local_variable, ":", $.type, ";")),
                 seq($.local_variable, ":", $.type)
-            )),
+            ))),
             ")",
-            optional(seq("->", $.local_variable)),
-            ":",
-            $.type
-        ),
+            optional(seq(
+                optional(seq("->", $.local_variable)),
+                ":",
+                $.type
+            ))
+        )),
         type: _$ => choice(
             "Text",
             "Date",
@@ -55,8 +60,8 @@ module.exports = grammar({
             "Blob",
             "Object",
             "Collection",
-            seq("cs.", /\w+/),
-            seq("4D.", /\w+/)
+            seq("cs", repeat1(/\.\w+/)),
+            seq("4D", repeat1(/\.\w+/))
         ),
         comment: _$ => choice(
             seq("//", /.*/),
@@ -119,7 +124,7 @@ module.exports = grammar({
             "End if"
         ),
         case: $ => seq(
-            "Case of", "\n",
+            "Case of", repeat1("\n"),
             repeat(seq(
                 ":", "(", $._expression, ")", "\n",
                 repeat($._line),

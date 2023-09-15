@@ -29,15 +29,15 @@ module.exports = {
     field: $ => seq($.table, $._immediate),
     pointer: $ => prec.right(seq("->", $._expression)),
     function_call: $ => seq(
-        $._identifier, "(", 
-        optional(seq(
+        field('name', $._identifier), "(", 
+        optional(field("params", seq(
             repeat(seq($._fn_arg, ";")), 
             $._fn_arg,
-        )), 
+        ))), 
         ")"
     ),
     _fn_arg: $ => choice($._expression, $.operator, $.assignment), // Assignment is needed for some builtin methods
-    operator: _$ => token(choice(">", "<", "*")), // necessary for some built-in methods
+    operator: _$ => field("op", token(choice(">", "<", "*"))), // necessary for some built-in methods
     _parentheses: $ => seq("(", $._expression, ")"),
     _accessor: $ => choice(
         $.pointer_access,
@@ -46,21 +46,21 @@ module.exports = {
         $.collection_access,
         $.array_access,
     ),
-    pointer_access: $ => seq($._expression, "->", optional(/\w+/)),
+    pointer_access: $ => seq($._expression, "->", optional(/\w+/)), // What is the optional identifier for?
     object_access: $ => seq(
-        $._expression, 
+        field("object", $._expression), 
         token.immediate("."), 
-        token.immediate(/[a-zA-Z$][\w$]*/)
+        field("attribute", token.immediate(/[a-zA-Z$][\w$]*/))
     ),
     member_function_call: $ => seq(
-        $._expression,
+        field("object", $._expression),
         token.immediate("."),
-        token.immediate(/[a-zA-Z$][\w$]*/),
+        field("method", token.immediate(/[a-zA-Z$][\w$]*/)),
         token.immediate("("),
-        optional(seq(
+        optional(field("params", seq(
             optional(repeat(seq($._expression, ";"))),
             $._expression,
-        )),
+        ))),
         token(")"),
     ),
     collection_access: $ => seq(
@@ -70,7 +70,7 @@ module.exports = {
         token("]"),
     ),
     array_access: $ => seq($._expression, token.immediate("{"), $._expression, token("}")),
-    _binary_expression: $ => prec.left(seq($._expression, choice(
+    _binary_expression: $ => prec.left(seq($._expression, field("op", choice(
         "+", "-", "/", "*",
         "&", "|", "=", "#",
         "&&", "||",
@@ -78,7 +78,7 @@ module.exports = {
         "%", "^", "\^|",
         "<<", ">>", "?+", "?-", "??",
         "*+", "*|"
-    ), $._expression)),
+    )), $._expression)),
 
     // https://developer.4d.com/docs/Concepts/identifiers - Not entirely accurate. See ∞ excellent test method ∞
     _identifier: _$ => /[a-zA-Z_0-9]([\w ]*[\w])?/,
