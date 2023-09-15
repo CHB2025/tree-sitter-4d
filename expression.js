@@ -10,23 +10,45 @@ module.exports = {
         $.table,
         $.field,
     ),
-    // TODO: Add support for object and collection literals
     _literal: $ => choice(
         $.string,
         $.boolean,
         $.number,
         $.date,
         $.time,
+        $.object,
+        $.collection,
     ),
     string: _$ => /"(\\"|[^"\n])*"/,
     boolean: _$ => choice("True", "False"),
     number: _$ => /-?\d+(\.\d+)?/,
     date: _$ => /!\d\d\d\d-\d\d-\d\d!/,
     time: _$ => /\?\d\d:\d\d:\d\d\?/,
+    object: $ => seq(
+        "{", 
+        optional(seq(
+            repeat(seq($._obj_item, ";")),
+            $._obj_item
+        )),
+        "}"
+    ),
+    _obj_item: $ => seq(field("key", $._attr), ":", field("value", $._expression )),
+    collection: $ => seq(
+        "[",
+        optional(seq(
+            repeat(seq(
+                field("item", $._expression),
+                ";"
+            )),
+            field("item", $._expression),
+        )),
+        "]"
+    ),
 
     // https://developer.4d.com/docs/Concepts/identifiers - Not entirely accurate. See ∞ excellent test method ∞
     identifier: _$ => /\w([\w ]*\w)?/,
     _immediate: $ => alias(token.immediate(/\w([\w ]*\w)?/), $.identifier),
+    _attr: $ => alias(/\w+/, $.identifier),
     _variable: $ => choice(
         $.local_variable,
         $.process_variable,
@@ -40,7 +62,7 @@ module.exports = {
     interprocess_variable: $ => seq("<>", $._immediate),
 
 
-    table: $ => seq("[", $.identifier, "]"),
+    table: $ => prec(2, seq("[", $.identifier, "]")),
     field: $ => seq($.table, $._immediate),
     pointer: $ => prec.right(seq("->", $._expression)),
     function_call: $ => seq(
@@ -65,12 +87,12 @@ module.exports = {
     object_access: $ => seq(
         field("object", $._expression), 
         token.immediate("."), 
-        field("attribute", $._immediate)
+        field("attribute", $._attr)
     ),
     member_function_call: $ => seq(
         field("object", $._expression),
         token.immediate("."),
-        field("method", $._immediate),
+        field("method", $._attr),
         token("("),
         optional(field("params", seq(
             optional(repeat(seq($._expression, ";"))),

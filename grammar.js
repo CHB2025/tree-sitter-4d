@@ -3,6 +3,7 @@ const expressions = require("./expression");
 // TODO: Add sql support
 // TODO: Add class support
 // TODO: Add formula support
+// TODO: ternary expression
 module.exports = grammar({
     name: "FourD",
     //word: $ => $.identifier,

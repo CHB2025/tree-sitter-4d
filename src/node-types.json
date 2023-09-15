@@ -28,6 +28,10 @@
             "named": true
           },
           {
+            "type": "collection",
+            "named": true
+          },
+          {
             "type": "collection_access",
             "named": true
           },
@@ -57,6 +61,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -114,6 +122,10 @@
             "named": true
           },
           {
+            "type": "collection",
+            "named": true
+          },
+          {
             "type": "collection_access",
             "named": true
           },
@@ -143,6 +155,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -225,6 +241,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -254,6 +274,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -316,6 +340,10 @@
             "named": true
           },
           {
+            "type": "collection",
+            "named": true
+          },
+          {
             "type": "collection_access",
             "named": true
           },
@@ -345,6 +373,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -504,6 +536,10 @@
             "named": true
           },
           {
+            "type": "collection",
+            "named": true
+          },
+          {
             "type": "collection_access",
             "named": true
           },
@@ -533,6 +569,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -601,6 +641,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -642,6 +686,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -692,12 +740,12 @@
     }
   },
   {
-    "type": "collection_access",
+    "type": "collection",
     "named": true,
     "fields": {
-      "collection": {
+      "item": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "(",
@@ -717,6 +765,10 @@
           },
           {
             "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "collection",
             "named": true
           },
           {
@@ -749,6 +801,110 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
+            "named": true
+          },
+          {
+            "type": "object_access",
+            "named": true
+          },
+          {
+            "type": "pointer",
+            "named": true
+          },
+          {
+            "type": "pointer_access",
+            "named": true
+          },
+          {
+            "type": "process_variable",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "table",
+            "named": true
+          },
+          {
+            "type": "time",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "collection_access",
+    "named": true,
+    "fields": {
+      "collection": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "array_access",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "collection",
+            "named": true
+          },
+          {
+            "type": "collection_access",
+            "named": true
+          },
+          {
+            "type": "date",
+            "named": true
+          },
+          {
+            "type": "field",
+            "named": true
+          },
+          {
+            "type": "function_call",
+            "named": true
+          },
+          {
+            "type": "interprocess_variable",
+            "named": true
+          },
+          {
+            "type": "local_variable",
+            "named": true
+          },
+          {
+            "type": "member_function_call",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -806,6 +962,10 @@
             "named": true
           },
           {
+            "type": "collection",
+            "named": true
+          },
+          {
             "type": "collection_access",
             "named": true
           },
@@ -835,6 +995,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -922,6 +1086,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -963,6 +1131,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -1041,6 +1213,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -1082,6 +1258,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -1178,6 +1358,10 @@
             "named": true
           },
           {
+            "type": "collection",
+            "named": true
+          },
+          {
             "type": "collection_access",
             "named": true
           },
@@ -1207,6 +1391,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -1274,6 +1462,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -1315,6 +1507,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -1400,6 +1596,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -1433,6 +1633,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -1505,6 +1709,10 @@
             "named": true
           },
           {
+            "type": "collection",
+            "named": true
+          },
+          {
             "type": "collection_access",
             "named": true
           },
@@ -1534,6 +1742,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -1595,6 +1807,10 @@
             "named": true
           },
           {
+            "type": "collection",
+            "named": true
+          },
+          {
             "type": "collection_access",
             "named": true
           },
@@ -1624,6 +1840,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -1701,6 +1921,116 @@
     }
   },
   {
+    "type": "object",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "array_access",
+            "named": true
+          },
+          {
+            "type": "binary_expression",
+            "named": true
+          },
+          {
+            "type": "boolean",
+            "named": true
+          },
+          {
+            "type": "collection",
+            "named": true
+          },
+          {
+            "type": "collection_access",
+            "named": true
+          },
+          {
+            "type": "date",
+            "named": true
+          },
+          {
+            "type": "field",
+            "named": true
+          },
+          {
+            "type": "function_call",
+            "named": true
+          },
+          {
+            "type": "interprocess_variable",
+            "named": true
+          },
+          {
+            "type": "local_variable",
+            "named": true
+          },
+          {
+            "type": "member_function_call",
+            "named": true
+          },
+          {
+            "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
+            "named": true
+          },
+          {
+            "type": "object_access",
+            "named": true
+          },
+          {
+            "type": "pointer",
+            "named": true
+          },
+          {
+            "type": "pointer_access",
+            "named": true
+          },
+          {
+            "type": "process_variable",
+            "named": true
+          },
+          {
+            "type": "string",
+            "named": true
+          },
+          {
+            "type": "table",
+            "named": true
+          },
+          {
+            "type": "time",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "object_access",
     "named": true,
     "fields": {
@@ -1739,6 +2069,10 @@
             "named": true
           },
           {
+            "type": "collection",
+            "named": true
+          },
+          {
             "type": "collection_access",
             "named": true
           },
@@ -1768,6 +2102,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -1828,6 +2166,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -1857,6 +2199,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -1919,6 +2265,10 @@
             "named": true
           },
           {
+            "type": "collection",
+            "named": true
+          },
+          {
             "type": "collection_access",
             "named": true
           },
@@ -1948,6 +2298,10 @@
           },
           {
             "type": "number",
+            "named": true
+          },
+          {
+            "type": "object",
             "named": true
           },
           {
@@ -2026,6 +2380,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -2067,6 +2425,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -2137,6 +2499,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -2166,6 +2532,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -2228,6 +2598,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -2273,6 +2647,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
@@ -2398,6 +2776,10 @@
           "named": true
         },
         {
+          "type": "collection",
+          "named": true
+        },
+        {
           "type": "collection_access",
           "named": true
         },
@@ -2439,6 +2821,10 @@
         },
         {
           "type": "number",
+          "named": true
+        },
+        {
+          "type": "object",
           "named": true
         },
         {
