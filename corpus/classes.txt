@@ -1,0 +1,48 @@
+=======
+Classes
+=======
+
+property test; field : Text
+property random : Integer
+
+Class extends 4D.Object
+
+Class constructor($temp: Text; $random: Integer)
+	// code
+
+Function set temp($temp: Text)
+	// code
+
+Function get temp() : Text
+	//code
+
+---
+
+(source_file
+	(class_property
+		(identifier)
+		(identifier)
+		(type))
+	(class_property
+		(identifier)
+		(type))
+	(class_extends
+		parent: (identifier)
+		parent: (identifier))
+	(class_constructor
+		params: (local_variable (identifier))
+		params: (type)
+		params: (local_variable (identifier))
+		params: (type))
+	(comment)
+	(class_function 
+		name: (identifier)
+		params: (local_variable (identifier))
+		params: (type))
+	(comment)
+	(class_function
+		name: (identifier)
+		return_type: (type))
+	(comment))
+	
+

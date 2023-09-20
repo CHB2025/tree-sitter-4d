@@ -115,7 +115,7 @@ module.exports = {
     binary_expression: $ => prec.left(seq(
         field("left", $._expression),
         field("op", choice(
-            "+", "-", "/", "*",
+            "+", "-", "/", "\\", "*",
             "&", "|", "=", "#",
             "&&", "||",
             ">", "<", ">=", "<=",

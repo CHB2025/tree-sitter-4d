@@ -1,7 +1,6 @@
 const expressions = require("./expression");
 
 // TODO: Add sql support
-// TODO: Add class support
 // TODO: Add formula support
 // TODO: ternary expression
 module.exports = grammar({
@@ -14,6 +13,7 @@ module.exports = grammar({
             optional(choice(
                 $._statement,
                 $._control_structure,
+                $._class_definitions,
                 $._expression,
             )),
             "\n"
@@ -134,6 +134,74 @@ module.exports = grammar({
         return: $ => seq(
             "return",
             optional($._expression),
+        ),
+
+        // Classes
+        _class_definitions: $ => choice(
+            $.class_extends,
+            $.class_constructor,
+            $.class_property,
+            $.class_function,
+        ),
+        class_extends: $ => seq(
+            token(prec(2, "Class ")),
+            token(prec(2, "extends")),
+            field("parent", seq(
+                $.identifier,
+                repeat(seq(
+                    token.immediate("."),
+                    $._immediate,
+                ))
+            ))
+        ),
+        class_constructor: $ => seq(
+            token(prec(2, "Class ")),
+            token(prec(2, "constructor")),
+            "(",
+            optional(field("params", seq(
+                repeat(seq(
+                    $.local_variable,
+                    ":",
+                    $.type,
+                    ";"
+                )),
+                $.local_variable,
+                ":",
+                $.type
+            ))),
+            ")"
+        ),
+        class_property: $ => seq(
+            token(prec(2, "property ")),
+            repeat(seq(
+                $._attr, ";"
+            )),
+            $._attr,
+            ":",
+            $.type,
+        ),
+        class_function: $ => seq(
+            token(prec(2, "Function ")),
+            optional(choice("get", "set")),
+            field('name', $._attr),
+            "(",
+            optional(field("params", seq(
+                repeat(seq(
+                    $.local_variable,
+                    ":",
+                    $.type,
+                    ";"
+                )),
+                $.local_variable,
+                ":",
+                $.type
+            ))),
+            ")",
+            optional(seq(
+                optional(seq("->", $.local_variable)),
+                ":",
+                field("return_type", $.type)
+            ))
         ),
         ...expressions,
     }
