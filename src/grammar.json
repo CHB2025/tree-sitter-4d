@@ -879,18 +879,7 @@
             "value": 2,
             "content": {
               "type": "STRING",
-              "value": "Class "
-            }
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 2,
-            "content": {
-              "type": "STRING",
-              "value": "extends"
+              "value": "Class extends"
             }
           }
         },
@@ -938,18 +927,7 @@
             "value": 2,
             "content": {
               "type": "STRING",
-              "value": "Class "
-            }
-          }
-        },
-        {
-          "type": "TOKEN",
-          "content": {
-            "type": "PREC",
-            "value": 2,
-            "content": {
-              "type": "STRING",
-              "value": "constructor"
+              "value": "Class constructor"
             }
           }
         },

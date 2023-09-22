@@ -3,6 +3,7 @@ const expressions = require("./expression");
 // TODO: Add sql support
 // TODO: Add formula support
 // TODO: ternary expression
+// TODO: Add support for Use expressions
 module.exports = grammar({
     name: "FourD",
     //word: $ => $.identifier,
@@ -144,8 +145,7 @@ module.exports = grammar({
             $.class_function,
         ),
         class_extends: $ => seq(
-            token(prec(2, "Class ")),
-            token(prec(2, "extends")),
+            token(prec(2, "Class extends")),
             field("parent", seq(
                 $.identifier,
                 repeat(seq(
@@ -155,8 +155,7 @@ module.exports = grammar({
             ))
         ),
         class_constructor: $ => seq(
-            token(prec(2, "Class ")),
-            token(prec(2, "constructor")),
+            token(prec(2, "Class constructor")),
             "(",
             optional(field("params", seq(
                 repeat(seq(

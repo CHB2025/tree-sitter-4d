@@ -3280,7 +3280,11 @@
     "named": false
   },
   {
-    "type": "Class ",
+    "type": "Class constructor",
+    "named": false
+  },
+  {
+    "type": "Class extends",
     "named": false
   },
   {
@@ -3404,20 +3408,12 @@
     "named": false
   },
   {
-    "type": "constructor",
-    "named": false
-  },
-  {
     "type": "cs",
     "named": false
   },
   {
     "type": "date",
     "named": true
-  },
-  {
-    "type": "extends",
-    "named": false
   },
   {
     "type": "get",
